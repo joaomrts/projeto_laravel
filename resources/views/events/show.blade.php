@@ -19,7 +19,7 @@
                <h3>O evento conta com:</h3>
                      @foreach ($event->items as $item)
                      <ul id="items-list">
-                        <li><ion-icon name="play-outline"></ion-icon> <span>{{ $item }}</span> </li>
+                        <li><ion-icon name="checkmark-outline"></ion-icon> <span>{{ $item }}</span> </li>
                 </ul>
                     @endforeach
             </div>

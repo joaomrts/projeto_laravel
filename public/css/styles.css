@@ -202,9 +202,28 @@ padding: 5px;
     display: flex;
 }
 
+#description-container {
+    margin-top: 30px;
+}
+
+/* Dashboard */
+.dashboard-title-container {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.dashboard-events-container th {
+    width: 25%;
+}
+
+.dashboard-events-container form {
+    display: inline-block;
+}
+
+
 /* footer */
 
-footer{
+footer {
 text-align: center;
 background-color:#353E48;
 color: #FFF;
@@ -214,6 +233,6 @@ bottom: 0;
 width: 100%;
 }
 
-footer p{
+footer p {
     margin-bottom: 0;
 }

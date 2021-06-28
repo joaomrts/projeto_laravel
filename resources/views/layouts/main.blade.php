@@ -46,7 +46,7 @@
                             this.closest('form').submit();">
                             Sair
                             </a>
-                        </form>
+                            </form>
                          </li>
                         @endauth
                        @guest
@@ -65,7 +65,7 @@
             <div class="container-fluid">
                 <div class="row">
                     @if (session('msg'))
-                    <p class="msg">(( session('msg') ))</p></p>
+                    <p class="msg">{{ session('msg') }}</p></p>
                     @endif
                     @yield('content')
                 </div>
