@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateEvent;
 use Illuminate\Http\Request;
 
 use App\Models\Event;
@@ -31,26 +32,26 @@ class EventController extends Controller
         return view('events.create');
     }
 
-    public function store(Request $request){
+    public function store(StoreUpdateEvent $request){
 
         $event = new Event;
 
-        $event->title = $request->title;
-        $event->date = $request->date;
-        $event->city = $request->city;
+        $event->evento = $request->evento;
+        $event->data = $request->data;
+        $event->cidade = $request->cidade;
         $event->private = $request->private;
-        $event->description = $request->description;
+        $event->descrição = $request->descrição;
         $event->items = $request->items;
 
 
         // Image Upload
-        if($request->hasFile('image') && $request->file('image')->isValid()){
+        if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
 
-            $requestImage = $request->image;
-            $extension = $requestImage->extension();
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-            $requestImage->move(public_path('public/img/events'), $imageName);
-            $event->image = $imageName;
+            $requestImagem = $request->imagem;
+            $extension = $requestImagem->extension();
+            $imagemName = md5($requestImagem->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $requestImagem->move(public_path('public/img/events'), $imagemName);
+            $event->imagem = $imagemName;
         }
 
 
@@ -85,4 +86,19 @@ class EventController extends Controller
 
         return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso!');
     }
+
+    public function edit($id){
+
+        $event = Event::findOrFail($id);
+
+        return view('events.edit', ['event' => $event]);
+    }
+
+    public function update(Request $request)
+    {
+        Event::findOrFail($request->id)->update($request->all());
+        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
+
+    }
+
 }

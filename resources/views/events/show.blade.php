@@ -1,18 +1,18 @@
 @extends('layouts.main')
 
-@section('title', $event->title)
+@section('title', $event->evento)
 
 @section('content')
 
     <div class="col-md-10 offset-md-1">
         <div class="row">
             <div id="image-container" class="col-md-6">
-                <img src="/public/img/events/{{ $event->image }}" class="img-fluid" alt="{{ $event->title }}">
+                <img src="/public/img/events/{{ $event->imagem }}" class="img-fluid" alt="{{ $event->evento }}">
             </div>
             <div id="info-container" class="col-md-6">
-              <h1>{{ $event->title }}</h1>
-               <p class="card-date"><ion-icon name="calendar-outline"></ion-icon> {{ date('d/m/Y', strtotime($event->date)) }}</p>
-               <p class="event-city"><ion-icon name="location-outline"></ion-icon> {{ $event->city }}</p>
+              <h1>{{ $event->evento }}</h1>
+               <p class="card-date"><ion-icon name="calendar-outline"></ion-icon> {{ date('d/m/Y', strtotime($event->data)) }}</p>
+               <p class="event-city"><ion-icon name="location-outline"></ion-icon> {{ $event->cidade }}</p>
                <p class="event-participants"><ion-icon name="people-outline"></ion-icon> X Participantes</p>
                <p class="event-owner"><ion-icon name="star-outline"></ion-icon> {{ $eventOwner['name'] }} </p>
                <a href="#" class="btn btn-primary" id="event-submit">Confirmar Presença</a>
@@ -25,7 +25,7 @@
             </div>
             <div class="col-md-12" id="description-container">
                 <h3>Sobre o Evento:</h3>
-                <p class="event-description">{{ $event->description }}</p>
+                <p class="event-description">{{ $event->descrição }}</p>
             </div>
 
         </div>

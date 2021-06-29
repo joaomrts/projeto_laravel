@@ -91,6 +91,13 @@ header{
 
 /* Events list*/
 
+#events-container img{
+    max-width:200px;
+    max-height:200px;
+    width: auto;
+    height: auto;
+}
+
 #events-container{
     padding: 50px;
 }
@@ -220,6 +227,11 @@ padding: 5px;
     display: inline-block;
 }
 
+/* Edit Image */
+.img-preview {
+    width: 200px;
+    margin-top: 40px;
+}
 
 /* footer */
 
