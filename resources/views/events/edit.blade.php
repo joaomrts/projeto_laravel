@@ -12,16 +12,10 @@
             <li>{{ $error }}</li>
         @endforeach
     </ul>
-
 @endif
-    <form action="/events/update{{ $event->id }}" method="POST" enctype="multipart/form-data">
+    <form action="/events/update/{{ $event->id }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="form-group">
-            <label for="imagem">Imagem do Evento:</label>
-            <input type="file" name="imagem" id="imagem" class="form-control-file">
-            <img src="/public/img/events/{{ $event->imagem }}" alt="{{ $event->evento }}" class="img-preview">
-        </div>
     <div class="form-group">
         <label for="evento">Evento:</label>
         <input type="text" class="form-control" id="evento" name="evento" placeholder="Nome do evento" value="{{ $event->evento }}">
@@ -43,6 +37,11 @@
     <div class="form-group">
         <label for="descrição">Descrição:</label>
        <textarea name="descrição" id="descrição" class="form-control" placeholder="O que vai acontecer no evento?">{{ $event->descrição }}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="imagem">Imagem do Evento:</label>
+        <input type="file" name="imagem" id="imagem" class="form-control-file">
+        <img src="/public/img/events/{{ $event->imagem }}" alt="{{ $event->evento }}" class="img-preview">
     </div>
     <label for="title">Adicione itens de infraestrutura:</label>
     <div class="form-group">

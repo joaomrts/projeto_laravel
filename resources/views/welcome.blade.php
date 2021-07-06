@@ -26,7 +26,7 @@
             <div class="card-body">
             <p class="card-date">{{ date('d/m/Y', strtotime($event->data)) }}</p>
             <h5 class="card-title">{{ $event->evento }}</h5>
-            <p class="card-participants">X Participantes</p>
+            <p class="card-participants">{{ count($event->users) }} Participante(s)</p>
             <a href="/events/{{ $event->id }}" class="btn btn-primary">Saber mais</a>
             </div>
         </div>
@@ -36,8 +36,8 @@
             <p><a href="/">Ver todos eventos</a></p>
         @elseif (count($events) == 0)
         <p>Não há eventos disponíveis</p>
+        <p><a href="/events/create/">Já tem uma conta? Crie um evento!</a></p>
         @endif
     </div>
 </div>
-
 @endsection

@@ -39,33 +39,53 @@ header{
     padding: 10px;
 }
 
+#info-container .already-joined-msg {
+    margin: 15px;
+    color: #004085;
+    background-color: #CCE5FF;
+    border: 1px solid #B8DAFF;
+    padding: 10px;
+    width: 275px;
+}
+
+/* navbar */
+
 #navbar {
     display: flex;
 }
 
 #navbar img{
-    width: 40px;
+    width: 70px;
     display: flex;
+    position:absolute;
+		margin-left:15px;
+		margin-top:-31px;
+}
+
+#navbar img:hover{
+    width: 71px;
 }
 
 #navbar{
     justify-content: space-between;
-    background-color: #FFF;
-    padding: 5px 0;
+    background-color:#FFF;
+    padding: 19.5px 0;
     display: flex;
 }
 
 #navbar a {
-    font-size: 14px;
+    font-size: 18px;
     color: #757575;
     display: flex;
+    margin-right: 15px;
 }
 
 #navbar a:hover{
-    font-size: 14px;
-    color: #F2A340;
-    display: flex;
+    color: #f7941c;
+    margin-right:15px;
 }
+
+/* Login */
 
 /* Search container */
 
@@ -92,7 +112,6 @@ header{
 /* Events list*/
 
 #events-container img{
-    max-width:200px;
     max-height:200px;
     width: auto;
     height: auto;
@@ -215,12 +234,13 @@ padding: 5px;
 
 /* Dashboard */
 .dashboard-title-container {
+
     margin-bottom: 30px;
     margin-top: 30px;
 }
 
 .dashboard-events-container th {
-    width: 25%;
+    width: auto;
 }
 
 .dashboard-events-container form {

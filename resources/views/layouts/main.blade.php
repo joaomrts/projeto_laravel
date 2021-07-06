@@ -24,24 +24,25 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbar">
                     <a href="/" class="navbar-brand">
-                        <img src="/img/hdcevents_logo.svg" alt="HDC Events">
+                        <img src="/img/logo_att.png" alt="Events">
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a href="/" class="nav-link">Eventos</a>
-                        </li>
-                        <li class="nav-item">
-                             <a href="/events/create" class="nav-link">Criar Eventos</a>
                         </li>
                         @auth
                         <li class="nav-item">
                             <a href="/dashboard" class="nav-link">Meus Eventos</a>
                          </li>
                          <li class="nav-item">
+                            <a href="/events/create" class="nav-link">Criar Eventos</a>
+                       </li>
+                         <li class="nav-form">
                             <form action="/logout" method="POST">
                             @csrf
                             <a href="/logout"
                             class="nav-link"
+                            id="form-logout"
                             onclick="event.preventDefault();
                             this.closest('form').submit();">
                             Sair

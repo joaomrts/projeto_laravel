@@ -24,11 +24,10 @@ class StoreUpdateEvent extends FormRequest
     public function rules()
     {
         return [
-            'evento' => ['required','min:3',],
+            'evento' => ['required', 'min:3',],
             'data' => ['required'],
             'cidade' => ['required', 'min:5'],
-            'descrição' => ['required', 'min:5', 'max:1000'],
-            'imagem' => ['required'],
+            'descrição' => ['required', 'min:5', 'max:1000']
         ];
     }
 
