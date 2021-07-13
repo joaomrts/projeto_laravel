@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUpdateEvent extends FormRequest
+class StorUpdateProduto extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,10 @@ class StoreUpdateEvent extends FormRequest
     public function rules()
     {
         return [
-            'evento' => ['required', 'min:3',],
-            'data' => ['required'],
-            'cidade' => ['required', 'min:5'],
-            'descrição' => ['required', 'min:5', 'max:1000']
-
+            'descriçãoProduto' => ['required', 'min:5', 'max:1000'],
+            'nomeProduto' => ['min:5', 'max:1000'],
+            'preço' => ['required', 'numeric'],
+            'imagemProduto' => ['required']
         ];
     }
 
@@ -37,7 +36,9 @@ class StoreUpdateEvent extends FormRequest
         return[
             'min' => 'O campo :attribute deve ter no mínimo :min caracteres',
             'required' => 'O campo :attribute é obrigatório',
-            'max' => 'O campo :attribute deve ter menos de :max caracteres'
+            'max' => 'O campo :attribute deve ter menos de :max caracteres',
+            'numeric' => 'O campo :attribute deve conter somente números',
+            'imagemProduto' => 'O campo :attribute é obrigatório'
         ];
     }
 

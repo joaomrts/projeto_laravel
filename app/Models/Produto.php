@@ -5,15 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Model
+class Produto extends Model
 {
     use HasFactory;
-
-    protected $casts =[
-        'items' => 'array'
-    ];
-
-    protected $dates = ['date'];
 
     protected $guarded = [];
 
@@ -26,4 +20,5 @@ class Event extends Model
     {
         return $this->belongsToMany('App\Models\User');
     }
+
 }

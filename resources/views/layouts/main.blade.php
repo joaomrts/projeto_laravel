@@ -27,15 +27,18 @@
                         <img src="/img/logo_att.png" alt="Events">
                     </a>
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">Eventos</a>
-                        </li>
                         @auth
+                        <li class="nav-item">
+                            <a href="/dashboardProdutos" class="nav-link">Meus Produtos</a>
+                        </li>
                         <li class="nav-item">
                             <a href="/dashboard" class="nav-link">Meus Eventos</a>
                          </li>
                          <li class="nav-item">
-                            <a href="/events/create" class="nav-link">Criar Eventos</a>
+                            <a href="/produto/cadastro" class="nav-link">Cadastrar Produtos</a>
+                        </li>
+                         <li class="nav-item">
+                            <a href="/events/create" class="nav-link">Cadastrar Eventos</a>
                        </li>
                          <li class="nav-form">
                             <form action="/logout" method="POST">

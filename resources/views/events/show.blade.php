@@ -15,6 +15,11 @@
                <p class="event-city"><ion-icon name="location-outline"></ion-icon> {{ $event->cidade }}</p>
                <p class="event-participants"><ion-icon name="people-outline"></ion-icon> {{ count($event->users) }} Participante(s)</p>
                <p class="event-owner"><ion-icon name="star-outline"></ion-icon> {{ $eventOwner['name'] }} </p>
+               @if ($event->private == 0)
+               <p class=" event-private"><ion-icon name="happy-outline"></ion-icon>O evento não é privado</p>
+                @else
+                <p><ion-icon name="sad-outline"></ion-icon>O evento é privado</p>
+               @endif
                @if(!$hasUserJoined)
                <form action="/events/join/{{ $event->id }}" method="POST">
                 @csrf
@@ -33,7 +38,7 @@
                      @foreach ($event->items as $item)
                      <ul id="items-list">
                         <li><ion-icon name="checkmark-outline"></ion-icon> <span>{{ $item }}</span> </li>
-                </ul>
+                    </ul>
                     @endforeach
             </div>
             <div class="col-md-12" id="description-container">

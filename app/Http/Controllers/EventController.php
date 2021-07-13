@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateEvent;
+use App\Http\Requests\StorUpdateProduto;
+use App\Http\Controllers\ProdutoController;
+
 use Illuminate\Http\Request;
 
 use App\Models\Event;
+use App\Models\Produto;
 use App\Models\User;
 
 class EventController extends Controller
@@ -13,18 +17,23 @@ class EventController extends Controller
     public function index()
     {
         $search = request('search');
+        $searchProduto = request('searchProduto');
 
-        if($search)
+        if(isset($search))
         {
             $events = Event::where([
-                ['title', 'like', '%'.$search.'%']
+                ['evento', 'like', '%'.$search.'%']
             ])->get();
+
+            $produtos = Produto::where([
+                ['nomeProduto', 'like', '%'.$searchProduto.'%']
+            ])->get();
+        } else {
+            $events = Event::all();
+            $produtos = Produto::all();
         }
-        else
-        {
-             $events = Event::all();
-        }
-        return view('welcome',['events' => $events, 'search' => $search]);
+
+        return view('welcome',['events' => $events, 'produtos' => $produtos, 'search' => $search, 'searchProduto' => $searchProduto ]);
     }
 
     public function create()
@@ -61,6 +70,9 @@ class EventController extends Controller
         $event->save();
         return redirect('/')->with('msg', 'Evento criado com sucesso!');
     }
+
+
+
 
     public function show($id)
     {
@@ -114,9 +126,24 @@ class EventController extends Controller
         return view('events.edit', ['event' => $event]);
     }
 
+
+
     public function update(StoreUpdateEvent $request)
     {
-        Event::findOrFail($request->id)->update($request->all());
+        $data = $request->all();
+
+         // Image Upload
+         if($request->hasFile('imagem') && $request->file('imagem')->isValid()){
+
+            $requestImagem = $request->imagem;
+            $extension = $requestImagem->extension();
+            $imagemName = md5($requestImagem->getClientOriginalName() . strtotime("now")) . "." . $extension;
+            $requestImagem->move(public_path('/public/img/events'), $imagemName);
+            $data['imagem'] = $imagemName;
+        }
+
+        Event::findOrFail($request->id)->update($data);
+
         return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
 
     }
