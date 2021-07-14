@@ -83,7 +83,7 @@
 
 <div class="col-md-10 offset-md-1 dashboard-events-container">
 
-<p><a href="/dashboardProdutos">Ir para seus produtos</a></p>
+<p><a href="/">Início</a></p>
 
 </div>
 

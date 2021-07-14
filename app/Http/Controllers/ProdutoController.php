@@ -47,8 +47,22 @@ class ProdutoController extends Controller
         $produto = Produto::findOrFail($id);
 
         $user = auth()->user();
+        $hasUserReserva = false;
 
-        return view('produtos.showProduto', ['produto' => $produto]);
+        if($user){
+            $userProdutos = $user->produtoAsReserva->toArray();
+
+            foreach($userProdutos as $userProduto)
+            {
+                if($userProduto['id'] == $id)
+                {
+                    $hasUserReserva = true;
+                }
+            }
+
+        }
+
+        return view('produtos.showProduto', ['produto' => $produto, 'hasUserReserva' => $hasUserReserva]);
     }
 
     public function editProduto($id){
@@ -104,7 +118,7 @@ class ProdutoController extends Controller
 
         $produto = Produto::findOrFail($id);
 
-        return redirect('/')->with('msg', 'Reserva feita com sucesso!');
+        return redirect('/dashboardProdutos')->with('msg', 'Reserva feita com sucesso!');
     }
 
     public function leaveProduto($id){
@@ -117,6 +131,5 @@ class ProdutoController extends Controller
         return redirect('/dashboardProdutos')->with('msg', 'Reserva cancelada com sucesso');
 
     }
-
 }
 

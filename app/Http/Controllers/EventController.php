@@ -26,14 +26,14 @@ class EventController extends Controller
             ])->get();
 
             $produtos = Produto::where([
-                ['nomeProduto', 'like', '%'.$searchProduto.'%']
+                ['nomeProduto', 'like', '%'.$search.'%']
             ])->get();
         } else {
             $events = Event::all();
             $produtos = Produto::all();
         }
 
-        return view('welcome',['events' => $events, 'produtos' => $produtos, 'search' => $search, 'searchProduto' => $searchProduto ]);
+        return view('welcome',['events' => $events, 'produtos' => $produtos, 'search' => $search]);
     }
 
     public function create()
@@ -121,7 +121,14 @@ class EventController extends Controller
 
     public function edit($id){
 
+        $user = auth()->user();
+
         $event = Event::findOrFail($id);
+
+        if ($user->id != $event->user_id )
+        {
+           return redirect('/');
+        }
 
         return view('events.edit', ['event' => $event]);
     }

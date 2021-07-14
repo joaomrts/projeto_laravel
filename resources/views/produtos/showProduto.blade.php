@@ -11,11 +11,9 @@
             </div>
             <div id="produto-container" class="col-md-6">
               <h1>{{ $produto->nomeProduto }}</h1>
-              <div class="col-md-12" id="produto-container">
-                <p class="event-description">{{ $produto->descriçãoProduto }}</p>
-              </div>
               <h2 class="event-participants">R${{ $produto->preço }}</h2>
-              <form action="/produto/reserva/{{ $produto->id }}" method="POST">
+               @if (!$hasUserReserva)
+               <form action="/produto/reserva/{{ $produto->id }}" method="POST">
                 @csrf
                 <a href="/produto/reserva/{{ $produto->id }}"
                     class="btn btn-primary"
@@ -24,11 +22,18 @@
                     this.closest('form').submit();"
                     >Reservar {{ $produto->nomeProduto }}</a>
             </form>
+               @else
+               <p class="already-joined-msg">Você já reservou este produto!</p>
+               @endif
             <div class="col-md-12">
                 <h3 class="reserva-container">Reservas já feitas: {{ count($produto->users) }}</h3>
             </div>
         </div>
+        <div class="col-md-12" id="description-container">
+            <h3>Sobre o Produto:</h3>
+            <p class="event-description">{{ $produto->descriçãoProduto }}</p>
+        </div>
         </div>
     </div>
 @endsection
-power
+
